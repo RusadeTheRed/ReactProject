@@ -1,53 +1,54 @@
-import { Component } from "react";
+import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
-class CampsiteInfo extends Component{
+
 
 // most notes are for me for reference, feel like I fell on my keys here
-    renderCommments(comments) { 
-        if(comments) {
-            return(//VVV had the key here as well including comment.id but since it is NOT part of the array method it is undefined
-            <div className="col-md-5 m-1">
-                <h4>Comments</h4>
-                {this.props.campsite.comments.map(comment =>{//NOTE key after array method ===> return (<div -here- />)
-                return(// VVV nice to know I had it right the first time I wrote it, went through several interations/combos to figure out what was wrong
-                <div key={comment.id} >
-                <p>{comment.text} <br />
-                    --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
-                </p>
-                </div>
-                    )
-              })}
+
+ function RenderCampsite({campsite}) { // NOTE copy the right one note 2- had to swap locations
+            return (// no instructions mentioned this part about adding the col info... when copied it wasnt there
+            <div className="col-md-5 m-1"> 
+                <Card>
+                    <CardImg top src={campsite.image} alt={campsite.name} />
+                    <CardBody>
+                        <CardTitle>{campsite.name}</CardTitle>
+                        <CardText>{campsite.description}</CardText>
+                    </CardBody>
+                </Card>
             </div>
-           )
-        }return <div />
-    }
-
-
-    renderCampsite(campsite) { // NOTE copy the right one
-        if (campsite) {
-            return (
-            <Card>
-                <CardImg top src={campsite.image} alt={campsite.name} />
-                <CardBody>
-                    <CardTitle>{campsite.name}</CardTitle>
-                    <CardText>{campsite.description}</CardText>
-                </CardBody>
-            </Card>
             );
-        }
-        return <div />
     }
+
+
+function RenderCommments({comments}) { 
+    if(comments) {
+        return(//VVV had the key here as well including comment.id but since it is NOT part of the array method it is undefined
+        <div className="col-md-5 m-1">
+            <h4>Comments</h4>
+            {comments.map(comment =>{//NOTE key after array method ===> return (<div -here- />)
+            return(// VVV nice to know I had it right the first time I wrote it, went through several interations/combos to figure out what was wrong
+            <div key={comment.id} >
+            <p>{comment.text} <br />
+                --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+            </p>
+            </div>
+                )
+            })}
+        </div>
+        )
+    }
+    return <div />
+}
 
 //NOTE renderCampsite is here so no state/props are needed, but the argument does
 
-    render(){// main return
-        if(this.props.campsite){
+function CampsiteInfo(props){// main return
+        if(props.campsite){
             return (// originally had the key here but was convinced the syntax was the problem not the placement...
                 <div className="container" >
                     <div className="row" >
-                        {this.renderCampsite(this.props.campsite)} <br />
-                        {this.renderCommments(this.props.campsite.comments)}
+                        <RenderCampsite campsite={props.campsite} /> <br />
+                        <RenderCommments comments={props.campsite.comments} />
                     </div>
                 </div>
             )
@@ -55,5 +56,5 @@ class CampsiteInfo extends Component{
         return <div />
         
     };
-}
+
 export default CampsiteInfo
