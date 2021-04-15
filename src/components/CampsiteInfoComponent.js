@@ -5,7 +5,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
 // most notes are for me for reference, feel like I fell on my keys here
 
- function RenderCampsite({campsite}) { // NOTE copy the right one note 2- had to swap locations
+ function RenderCampsite({campsite}) { // NOTE copy the right one note 2- had to swap locations so I wasnt confused with the exercises
             return (// no instructions mentioned this part about adding the col info... when copied it wasnt there
             <div className="col-md-5 m-1"> 
                 <Card>
@@ -20,7 +20,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
     }
 
 
-function RenderCommments({comments}) { 
+function RenderCommments({comments}) { // Note: after feedback- keeping it comments but could change to campsite, the videos have it set this way so I dont want to get confused later
     if(comments) {
         return(//VVV had the key here as well including comment.id but since it is NOT part of the array method it is undefined
         <div className="col-md-5 m-1">
