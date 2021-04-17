@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 
@@ -11,7 +12,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
                 <Card>
                     <CardImg top src={campsite.image} alt={campsite.name} />
                     <CardBody>
-                        <CardTitle>{campsite.name}</CardTitle>
                         <CardText>{campsite.description}</CardText>
                     </CardBody>
                 </Card>
@@ -45,7 +45,17 @@ function RenderCommments({comments}) { // Note: after feedback- keeping it comme
 function CampsiteInfo(props){// main return
         if(props.campsite){
             return (// originally had the key here but was convinced the syntax was the problem not the placement...
-                <div className="container" >
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                        <Breadcrumb>
+                                <BreadcrumbItem><Link to="/directory">Directory</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>{props.campsite.name}</BreadcrumbItem>
+                            </Breadcrumb>
+                            <h2>{props.campsite.name}</h2>
+                            <hr />
+                        </div>
+                    </div>
                     <div className="row" >
                         <RenderCampsite campsite={props.campsite} /> <br />
                         <RenderCommments comments={props.comments} />
