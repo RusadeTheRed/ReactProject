@@ -8,8 +8,9 @@ export const initialState = {
     comments: COMMENTS,
     partners: PARTNERS,
     promotions: PROMOTIONS
-}
+};
 
- export const Reducer = {state = initialState, action} => {
+ export const Reducer = (state = initialState, action) => {
+
     return state;
-}
+};
