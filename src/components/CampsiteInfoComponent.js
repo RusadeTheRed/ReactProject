@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem,
     Button, Label, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 
 // most notes are for me for reference, feel like I fell on my keys here
@@ -127,9 +128,29 @@ class CommentForm extends Component {
 
 }
 
-//NOTE renderCampsite is here so no state/props are needed, but the argument does
 
+// updating fro thunk and logger
 function CampsiteInfo(props){// main return
+        if (props.isLoading) {
+                return(
+                    <div className="container" >
+                        <div className="row">
+                            <Loading />
+                        </div>
+                    </div>
+                )
+        }
+        if (props.errMess) {
+            return(
+                <div className="container" >
+                    <div className="row">
+                        <div className="col" >
+                            <h4>{props.campsites.errMess}</h4>
+                        </div>
+                    </div>
+                </div>
+            )
+        }//NOTE renderCampsite is here so no state/props are needed, but the argument does
         if(props.campsite){
             return (// originally had the key here but was convinced the syntax was the problem not the placement...
                 <div className="container">
