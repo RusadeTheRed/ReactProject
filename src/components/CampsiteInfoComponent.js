@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 // most notes are for me for reference, feel like I fell on my keys here
 
@@ -14,31 +15,41 @@ const minLength = len => val => val && (val.length >= len);
  function RenderCampsite({campsite}) { // NOTE copy the right one note 2- had to swap locations so I wasnt confused with the exercises
             return (// no instructions mentioned this part about adding the col info... when copied it wasnt there
             <div className="col-md-5 m-1"> 
-                <Card>
-                    <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
-                    <CardBody>
-                        <CardText>{campsite.description}</CardText>
-                    </CardBody>
-                </Card>
+                <FadeTransform
+                    in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(50%)'
+                     }}>
+                    <Card>
+                        <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
+                        <CardBody>
+                            <CardText>{campsite.description}</CardText>
+                        </CardBody>
+                    </Card>
+                </FadeTransform>
             </div>
             );
     }
 
 
-function RenderCommments({comments, postComment, campsiteId}) { // Note: after feedback- keeping it comments but could change to campsite, the videos have it set this way so I dont want to get confused later
+function RenderCommments({comments, postComment, campsiteId}) { 
     if(comments) {
-        return(//VVV had the key here as well including comment.id but since it is NOT part of the array method it is undefined
+        return(
         <div className="col-md-5 m-1">
             <h4>Comments</h4>
-            {comments.map(comment =>{//NOTE key after array method ===> return (<div -here- />)
-            return(// VVV nice to know I had it right the first time I wrote it, went through several interations/combos to figure out what was wrong
-            <div key={comment.id} >
-            <p>{comment.text} <br />
-                --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
-            </p>
-            </div>
-                )
-            })}
+            <Stagger in>
+                {comments.map(comment =>{//NOTE key after array method in first element after return
+                return(
+                    <Fade in key={comment.id}>
+                        <div>
+                            <p>{comment.text} <br />
+                                --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                            </p>
+                        </div>
+                    </Fade>
+                        )
+                    })}
+            </Stagger>
             <CommentForm campsiteId={campsiteId} postComment={postComment} />
         </div>
         )
