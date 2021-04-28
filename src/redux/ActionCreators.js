@@ -74,7 +74,7 @@ export const commentsFailed = errMess => ({
     payload: errMess
 });
 
-export const addComments  = comments => ({
+export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });

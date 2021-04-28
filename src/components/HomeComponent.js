@@ -20,7 +20,7 @@ function RenderCard({item, isLoading, errMess}) {
         </Card>
     );
 }
-
+// and I'm just going to type it once and copy/paste it whereverr else it needs to be from now on since I cant type to save my life
 function Home(props) {
     return (
         <div className="container">
@@ -29,7 +29,7 @@ function Home(props) {
                 <RenderCard 
                     item={props.campsite}
                     isLoading={props.campsitesLoading}
-                    errMess={props.campsitesErrmess}
+                    errMess={props.campsitesErrMess}
                 />
                 </div>
                 <div className="col-md m-1">
