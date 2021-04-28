@@ -12,7 +12,6 @@ export const addComment =(campsiteId, rating, author, text) => ({
 });
 // function within a function THANKS THUNK!
 export const fetchCampsites = () => dispatch => {
-
     dispatch(campsitesLoading());
 
     return fetch(baseUrl + 'campsites')
@@ -51,7 +50,6 @@ export const addComments  = comments => ({
 });
 
 export const fetchPromotions = () => dispatch => {
-
     dispatch(promotionsLoading());
 
     return fetch(baseUrl + 'promotions')

@@ -36,7 +36,7 @@ class Main extends Component {// container component
         this.props.fetchPromotions();
     }
 
-    render() {
+    render() {// spelling matters promotionloading/Errmess not promotionssssssssss on 47 and 48
         const HomePage = () => {
             return (
                 <Home
@@ -44,8 +44,8 @@ class Main extends Component {// container component
                     campsitesLoading={this.props.campsites.isLoading}
                     campsiteErrMess={this.props.campsites.errMess}
                     promotion={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
-                    promotionsLoading={this.props.promotions.isLoading}
-                    promotionserrMess={this.props.promotions.errMess}
+                    promotionLoading={this.props.promotions.isLoading}
+                    promotionErrMess={this.props.promotions.errMess}
                     partner={this.props.partners.filter(partner => partner.featured)[0]}
                 />
             );
