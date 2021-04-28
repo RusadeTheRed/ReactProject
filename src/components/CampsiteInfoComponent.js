@@ -25,7 +25,7 @@ const minLength = len => val => val && (val.length >= len);
     }
 
 
-function RenderCommments({comments, addComment, campsiteId}) { // Note: after feedback- keeping it comments but could change to campsite, the videos have it set this way so I dont want to get confused later
+function RenderCommments({comments, postComment, campsiteId}) { // Note: after feedback- keeping it comments but could change to campsite, the videos have it set this way so I dont want to get confused later
     if(comments) {
         return(//VVV had the key here as well including comment.id but since it is NOT part of the array method it is undefined
         <div className="col-md-5 m-1">
@@ -39,7 +39,7 @@ function RenderCommments({comments, addComment, campsiteId}) { // Note: after fe
             </div>
                 )
             })}
-            <CommentForm campsiteId={campsiteId} addComment={addComment} />
+            <CommentForm campsiteId={campsiteId} postComment={postComment} />
         </div>
         )
     }
@@ -65,7 +65,7 @@ class CommentForm extends Component {
 
     handleSubmit(values) {
         this.toggleModal()
-        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
+        this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
     };
 
     render() {
@@ -168,7 +168,7 @@ function CampsiteInfo(props){// main return
                         <RenderCampsite campsite={props.campsite} /> <br />
                         <RenderCommments
                             comments={props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             campsiteId={props.campsite.id}
                          />
                     </div>
