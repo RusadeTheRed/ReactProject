@@ -138,18 +138,18 @@ function CampsiteInfo(props){// main return
                             <Loading />
                         </div>
                     </div>
-                )
+                );
         }
         if (props.errMess) {
             return(
                 <div className="container" >
                     <div className="row">
                         <div className="col" >
-                            <h4>{props.campsites.errMess}</h4>
+                            <h4>{props.errMess}</h4>
                         </div>
                     </div>
                 </div>
-            )
+            );
         }//NOTE renderCampsite is here so no state/props are needed, but the argument does
         if(props.campsite){
             return (// originally had the key here but was convinced the syntax was the problem not the placement...

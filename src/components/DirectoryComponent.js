@@ -25,7 +25,7 @@ function Directory(props)  {// props since we changed the location of the state 
                 <RenderDirectoryItem campsite={campsite} />
             </div>
         )
-    })// updateing for thunk and logger
+    });// updateing for thunk and logger
     if (props.campsites.isLoading) {
         return (
             <div className="container" >
@@ -44,7 +44,7 @@ function Directory(props)  {// props since we changed the location of the state 
                     </div>
                 </div>
             </div>
-        )
+        );
     }
     return (// main return
         <div className="container">

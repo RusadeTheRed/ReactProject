@@ -26,7 +26,7 @@ const mapDispatchToProps = {
     resetFeedbackForm: () => (actions.reset('feedbackForm')),
     fetchComments: () => (fetchComments()),
     fetchPromotions: () => (fetchPromotions())
-}
+};
 
 class Main extends Component {// container component
 
@@ -42,7 +42,7 @@ class Main extends Component {// container component
                 <Home
                     campsite={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
                     campsitesLoading={this.props.campsites.isLoading}
-                    campsiteErrMess={this.props.campsites.errMess}
+                    campsitesErrMess={this.props.campsites.errMess}
                     promotion={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
                     promotionLoading={this.props.promotions.isLoading}
                     promotionErrMess={this.props.promotions.errMess}
