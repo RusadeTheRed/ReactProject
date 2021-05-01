@@ -11,7 +11,7 @@ const isNumber = val => !isNaN(+val); // its not not a number....
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 //                          anycharacters-@-othercharacters-.-between 2 and 4 letters + a test.... quite a mouthful
 
-class  Contact extends Component {
+class Contact extends Component {
     constructor(props) {
         super(props);
 
@@ -37,9 +37,8 @@ class  Contact extends Component {
 
 
     handleSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
         this.props.resetFeedbackForm();
+        this.props.postFeedback(values);
     }
 
     render() {

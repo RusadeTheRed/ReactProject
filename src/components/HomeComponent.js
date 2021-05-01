@@ -11,7 +11,8 @@ function RenderCard({item, isLoading, errMess}) {
     if (errMess) {
         return <h4>{errMess}</h4>;
     }
-    return (
+    if(item !== undefined) {
+        return(
         <FadeTransform
         in
         transformProps={{
@@ -26,6 +27,8 @@ function RenderCard({item, isLoading, errMess}) {
             </Card>
         </FadeTransform>
     );
+}
+return null
 }
 // and I'm just going to type it once and copy/paste it whereverr else it needs to be from now on since I cant type to save my life
 function Home(props) {
@@ -47,7 +50,11 @@ function Home(props) {
                 />
                 </div>
                 <div className="col-md m-1">
-                    <RenderCard item={props.partner} />
+                 <RenderCard
+                     item={props.partner}
+                     isLoading={props.partnerLoading}
+                     errMess={props.partnerErrMess} 
+                />
                 </div>
             </div>
         </div>
