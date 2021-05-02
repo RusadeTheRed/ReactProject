@@ -194,21 +194,12 @@ export const addPartners = partners => ({
     payload: partners
 });
 
-//fun fact dispatch is Not being used as anything other than a placeholder to keep a wierd error from coming up upon submiting the feedback
-export const postFeedback = (firstName, lastName, phoneNum, email, agree, contactType, feedback) => dispatch => {
-    const newFeedback = {
-        firstName: firstName,
-        lastName: lastName,
-        phoneNum: phoneNum,
-        email: email,
-        agree: agree,
-        contactType: contactType,
-        feedback: feedback
 
-    };
+export const postFeedback = (feedback) => () => {
+/// and of course after I turn in the assignment the damn thing stops throwing errors when I fix it this way....
             return fetch(baseUrl + 'feedback', {
                 method: "POST",
-                body: JSON.stringify(newFeedback),
+                body: JSON.stringify(feedback),
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -225,9 +216,10 @@ export const postFeedback = (firstName, lastName, phoneNum, email, agree, contac
             error => { throw error; }
             )
             .then(response => response.json())
-            .then(alert('thanks for your Feedback: ' + JSON.stringify(newFeedback)))
+            .then(alert('thanks for your Feedback: ' + JSON.stringify(feedback)))
             .catch(error => {
                 console.log('post feedback', error.message);
                 alert('Your feedback could not be posted\nError: ' + error.message);
             })
             };
+// again thanks James cagle for help here
